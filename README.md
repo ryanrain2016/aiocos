@@ -16,8 +16,11 @@ async def main():
         Token="", 
         auth_expire=100)
     client = CosS3Client(config)
+    f = await aiofiles.open('xxxxxx') 
     try:
-        ret = await client.put_object('Bucket-appid', f._file, '/file_name')
+        ret = await client.put_object('Bucket-appid', 
+            f._file,   #这里其实就是文件对象
+            '/file_name')
         print(ret)
     finally:
         await client.wait_close()
